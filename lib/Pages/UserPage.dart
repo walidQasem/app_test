@@ -42,6 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Users'),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           for (var user in users) {
@@ -68,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: filteredUsers.length,
               itemBuilder: (BuildContext context, int index) {
                 return UserComponent(
-                    color: const Color.fromARGB(255, 58, 183, 125),
+                    color: Color.fromARGB(255, 58, 183, 68),
                     id: filteredUsers[index].id!,
                     name: filteredUsers[index].name.toString(),
                     friends: filteredUsers[index].friends!,

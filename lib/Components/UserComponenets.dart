@@ -31,6 +31,7 @@ class UserComponent extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 8),
@@ -38,6 +39,7 @@ class UserComponent extends StatelessWidget {
               'Name: $name',
               style: TextStyle(
                 fontSize: 16,
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 8),
@@ -45,6 +47,7 @@ class UserComponent extends StatelessWidget {
               'Friends: ${friends.join(", ")}',
               style: TextStyle(
                 fontSize: 16,
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 8),
@@ -52,6 +55,7 @@ class UserComponent extends StatelessWidget {
               'Interests: ${interests.join(", ")}',
               style: TextStyle(
                 fontSize: 16,
+                color: Colors.white,
               ),
             ),
           ],
