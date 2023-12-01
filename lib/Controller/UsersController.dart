@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-import '../Model/UsersModel.dart';
+import '../Model/UserModel.dart';
 
 class UserController extends GetxController {
   List<User> users = [];
