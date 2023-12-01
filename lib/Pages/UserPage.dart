@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             )
           : ListView.builder(
-              itemCount: users.length,
+              itemCount: filteredUsers.length,
               itemBuilder: (BuildContext context, int index) {
                 return UserComponent(
                     color: const Color.fromARGB(255, 58, 183, 125),

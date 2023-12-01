@@ -18,6 +18,7 @@ class UserComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color,
       elevation: 5,
       margin: EdgeInsets.all(10),
       child: Padding(
@@ -59,24 +60,3 @@ class UserComponent extends StatelessWidget {
     );
   }
 }
-
-// void fetchUsers() async {
-//     QuerySnapshot querySnapshot =
-//         await FirebaseFirestore.instance.collection('your_users_collection').get();
-
-//     setState(() {
-//       users = querySnapshot.docs.map((doc) {
-//         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-//         return User(
-//           id: data['id'],
-//           name: data['name'],
-//           friends: List<int>.from(data['friends']),
-//           interests: List<String>.from(data['interests']),
-//         );
-//       }).toList();
-//     });
-//   }
-
-  // List<User> filterUsersByInterest(String interest) {
-  //   return users.where((user) => user.interests.contains(interest)).toList();
-  // }
