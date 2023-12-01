@@ -27,32 +27,31 @@ class UserPage extends StatelessWidget {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else {
-            if (!controller.isFiltered) {
-              return ListView.builder(
-                itemCount: controller.users.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return UserComponent(
-                      color: const Color.fromARGB(255, 237, 237, 237),
-                      id: controller.users[index].id!,
-                      name: controller.users[index].name.toString(),
-                      friends: controller.users[index].friends!,
-                      interests: controller.users[index].interests!);
-                },
-              );
-            }
+          }
+          if (!controller.isFiltered) {
             return ListView.builder(
-              itemCount: controller.filteredUsers.length,
+              itemCount: controller.users.length,
               itemBuilder: (BuildContext context, int index) {
                 return UserComponent(
                     color: const Color.fromARGB(255, 237, 237, 237),
-                    id: controller.filteredUsers[index].id!,
-                    name: controller.filteredUsers[index].name.toString(),
-                    friends: controller.filteredUsers[index].friends!,
-                    interests: controller.filteredUsers[index].interests!);
+                    id: controller.users[index].id!,
+                    name: controller.users[index].name.toString(),
+                    friends: controller.users[index].friends!,
+                    interests: controller.users[index].interests!);
               },
             );
           }
+          return ListView.builder(
+            itemCount: controller.filteredUsers.length,
+            itemBuilder: (BuildContext context, int index) {
+              return UserComponent(
+                  color: const Color.fromARGB(255, 237, 237, 237),
+                  id: controller.filteredUsers[index].id!,
+                  name: controller.filteredUsers[index].name.toString(),
+                  friends: controller.filteredUsers[index].friends!,
+                  interests: controller.filteredUsers[index].interests!);
+            },
+          );
         }));
   }
 }
