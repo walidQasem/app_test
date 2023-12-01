@@ -1,3 +1,8 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "security.workspace.trust.untrustedFiles": "open",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.tabCompletion": "on",
+  "diffEditor.codeLens": true
 }

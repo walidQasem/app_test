@@ -1,84 +1,54 @@
 import 'package:app_test/Components/UserComponenets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app_test/Controller/UsersController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../Model/UsersModel.dart';
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  List<User> users = [];
-  void fetchUsers() async {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('users').get();
-
-    setState(() {
-      users = querySnapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        return User.fromJson(data);
-      }).toList();
-    });
-  }
-
-  @override
-  void initState() {
-    fetchUsers();
-    super.initState();
-  }
-
-  List<User> filteredUsers = [];
-  filterUsersByInterest(String interest) {
-    setState(() {
-      filteredUsers =
-          users.where((user) => user.interests!.contains(interest)).toList();
-    });
-  }
+class UserPage extends StatelessWidget {
+  const UserPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.put(UserController());
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Users'),
-        centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          for (var user in users) {
-            for (int i = 0; i < user.interests!.length; i++) {
-              filterUsersByInterest(user.interests![i]);
-            }
+        appBar: AppBar(
+          title: const Text('Users'),
+          centerTitle: true,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            userController.onfilter();
+          },
+          child: GetBuilder<UserController>(builder: (controller) {
+            return controller.isFiltered == false
+                ? const Icon(Icons.filter_alt_outlined)
+                : const Icon(Icons.highlight_remove_sharp);
+          }),
+        ),
+        body: GetBuilder<UserController>(builder: (controller) {
+          if (controller.isFiltered) {
+            return ListView.builder(
+              itemCount: controller.users.length,
+              itemBuilder: (BuildContext context, int index) {
+                return UserComponent(
+                    color: const Color.fromARGB(255, 237, 237, 237),
+                    id: controller.users[index].id!,
+                    name: controller.users[index].name.toString(),
+                    friends: controller.users[index].friends!,
+                    interests: controller.users[index].interests!);
+              },
+            );
           }
-        },
-        child: Icon(Icons.filter_alt_outlined),
-      ),
-      body: filteredUsers.isEmpty
-          ? ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (BuildContext context, int index) {
-                return UserComponent(
-                    color: Colors.deepPurple,
-                    id: users[index].id!,
-                    name: users[index].name.toString(),
-                    friends: users[index].friends!,
-                    interests: users[index].interests!);
-              },
-            )
-          : ListView.builder(
-              itemCount: filteredUsers.length,
-              itemBuilder: (BuildContext context, int index) {
-                return UserComponent(
-                    color: Color.fromARGB(255, 58, 183, 68),
-                    id: filteredUsers[index].id!,
-                    name: filteredUsers[index].name.toString(),
-                    friends: filteredUsers[index].friends!,
-                    interests: filteredUsers[index].interests!);
-              },
-            ),
-    );
+          return ListView.builder(
+            itemCount: controller.filteredUsers.length,
+            itemBuilder: (BuildContext context, int index) {
+              return UserComponent(
+                  color: const Color.fromARGB(255, 237, 237, 237),
+                  id: controller.filteredUsers[index].id!,
+                  name: controller.filteredUsers[index].name.toString(),
+                  friends: controller.filteredUsers[index].friends!,
+                  interests: controller.filteredUsers[index].interests!);
+            },
+          );
+        }));
   }
 }

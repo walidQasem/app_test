@@ -7,7 +7,8 @@ class UserComponent extends StatelessWidget {
   final List<String> interests;
   final Color color;
 
-  UserComponent({
+  const UserComponent({
+    super.key,
     required this.id,
     required this.name,
     required this.friends,
@@ -17,48 +18,42 @@ class UserComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: color,
-      elevation: 5,
-      margin: EdgeInsets.all(10),
-      child: Padding(
-        padding: EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'ID: $id',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 1000),
+      child: Card(
+        color: color,
+        margin: const EdgeInsets.all(10),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 8),
+              Text(
+                'Name: $name',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 79, 79, 79),
+                ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Name: $name',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+              const SizedBox(height: 8),
+              Text(
+                'Friends: ${friends.join(", ")}',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 79, 79, 79),
+                ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Friends: ${friends.join(", ")}',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+              const SizedBox(height: 8),
+              Text(
+                'Interests: ${interests.join(", ")}',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 79, 79, 79),
+                ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Interests: ${interests.join(", ")}',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
