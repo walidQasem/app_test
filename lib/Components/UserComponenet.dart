@@ -19,10 +19,10 @@ class UserComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(seconds: 2),
       child: Card(
         color: color,
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 10),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -32,24 +32,17 @@ class UserComponent extends StatelessWidget {
               Text(
                 'Name: $name',
                 style: const TextStyle(
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 79, 79, 79),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Friends: ${friends.join(", ")}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 79, 79, 79),
+                  fontSize: 13,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontFamily: "Cairo",
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Interests: ${interests.join(", ")}',
                 style: const TextStyle(
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 79, 79, 79),
+                  fontSize: 13,
+                  color: Color.fromARGB(255, 255, 255, 255),
                 ),
               ),
             ],

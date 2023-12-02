@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-import 'Pages/UserPage.dart';
+import 'Pages/UsersPage.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,10 +22,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        useMaterial3: true,
+
         colorScheme:
             ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 0, 0)),
         primaryColor: Colors.black,
-        useMaterial3: true,
+        // useMaterial3: true,
       ),
       home: const UserPage(),
     );

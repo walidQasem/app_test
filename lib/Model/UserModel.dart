@@ -1,3 +1,6 @@
+
+// ignore_for_file: file_names
+
 class User {
   int? id;
   String? name;
@@ -14,11 +17,13 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['friends'] = this.friends;
-    data['interests'] = this.interests;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['friends'] = friends;
+    data['interests'] = interests;
     return data;
   }
+
+  contains(String interest) {}
 }
