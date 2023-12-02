@@ -29,21 +29,48 @@ class UserComponent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
-              Text(
-                'Name: $name',
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontFamily: "Cairo",
-                ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.person_2_rounded,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontFamily: "Cairo",
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
-              Text(
-                'Interests: ${interests.join(", ")}',
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.interests,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Interests: ${interests.join(", ")}',
+                      // maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
