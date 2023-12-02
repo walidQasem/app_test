@@ -32,7 +32,7 @@ class FilterWidget extends StatelessWidget {
                 value: controller.isFiltered,
                 activeColor: Colors.black,
                 onChanged: (bool? value) {
-                  controller.onFilter();
+                  controller.filterUsersByInterest();
                 },
               ),
               const Text('Group By interests',

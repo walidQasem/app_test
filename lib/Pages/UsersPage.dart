@@ -15,8 +15,6 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> dropdownItems = ['1', '2', '3', '4'];
-
     UserController userController = Get.put(UserController());
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 38, 38, 38),
@@ -27,6 +25,7 @@ class UserPage extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 38, 38, 38),
           centerTitle: true,
         ),
+        //*************************Show bottom sheet For filtering Users*************************//
         floatingActionButton: FloatingActionButton(
             backgroundColor: const Color.fromARGB(255, 36, 36, 36),
             onPressed: () {
@@ -37,21 +36,26 @@ class UserPage extends StatelessWidget {
               color: Colors.white,
             )),
         body: GetBuilder<UserController>(builder: (controller) {
+          //*************************is Loading*************************//
           if (controller.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
+          //*************************When downloading data*************************//
           return const Padding(
             padding: EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //*************************Seach User By Name*************************//
                 SearchWidget(),
                 SizedBox(
                   height: 10,
                 ),
+                //*************************Get number Of List Users*************************//
                 NumberOfuserWidget(),
+                //*************************Show a list Users*************************//
                 ListUsersWidget()
               ],
             ),
