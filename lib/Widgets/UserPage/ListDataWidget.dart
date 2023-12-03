@@ -14,15 +14,12 @@ class ListUsersWidget extends StatelessWidget {
         child: ListView.builder(
           itemCount: controller.list.length,
           itemBuilder: (BuildContext context, int index) {
-            return AnimatedContainer(
-              duration: Duration(microseconds: 300 + (index * 100)),
-              child: UserComponent(
-                  color: const Color.fromARGB(255, 74, 74, 74),
-                  id: controller.list[index].id!,
-                  name: controller.list[index].name.toString(),
-                  friends: controller.list[index].friends!,
-                  interests: controller.list[index].interests!),
-            );
+            return UserComponent(
+                color: const Color.fromARGB(255, 74, 74, 74),
+                id: controller.list[index].id!,
+                name: controller.list[index].name.toString(),
+                friends: controller.list[index].friends!,
+                interests: controller.list[index].interests!);
           },
         ),
       );

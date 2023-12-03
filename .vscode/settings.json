@@ -4,5 +4,6 @@
     "source.fixAll": true
   },
   "editor.tabCompletion": "on",
-  "diffEditor.codeLens": true
+  "diffEditor.codeLens": true,
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

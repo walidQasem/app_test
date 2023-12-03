@@ -15,6 +15,7 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     UserController userController = Get.put(UserController());
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 38, 38, 38),
