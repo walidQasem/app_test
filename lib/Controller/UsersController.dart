@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../Model/UserModel.dart';
@@ -15,12 +16,16 @@ class UserController extends GetxController {
   bool isLoading = false;
 
   //*************************Get Users Data*************************//
-
+  
   Future<void> fetchUsers() async {
+    final Trace trace = FirebasePerformance.instance.newTrace("UsersTrac");
     try {
+      final stopwatch = Stopwatch()..start();
       isLoading = true;
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('users').get();
+      final elapsedMilliseconds = stopwatch.elapsedMilliseconds;
+      print('Time taken to bring in users: $elapsedMilliseconds ms');
       users.addAll(querySnapshot.docs.map((doc) {
         return User.fromJson(doc.data() as Map<String, dynamic>);
       }).toList());
@@ -29,8 +34,8 @@ class UserController extends GetxController {
       // ignore: avoid_print
       print("Error $e");
     } finally {
+      trace.stop();
       isLoading = false;
-
       update();
     }
   }
